@@ -1,4 +1,5 @@
 <?php
+// Set CORS headers
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, OPTIONS");
 header("Access-Control-Allow-Headers: *");
@@ -8,26 +9,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-$get = $_GET['get']; // The path to the mpd
-$keyId = $_GET['keyId']; // The keyId for ClearKey
-$key = $_GET['key']; // The key for ClearKey
-
-// Construct the URL with parameters
+$get = $_GET['get'];
 $mpdUrl = 'https://linearjitp-playback.astro.com.my/dash-wv/linear/' . $get;
-$mpdUrl .= '?drmScheme=clearkey&drmLicense=' . urlencode($keyId . ':' . $key);
 
-// Set headers for fetching remote content
+// Set headers for fetching remote
 $mpdheads = [
-    'http' => [
-        'header' => "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36\r\n",
-        'follow_location' => 1,
-        'timeout' => 5
-    ]
+  'http' => [
+      'header' => "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36\r\n",
+      'follow_location' => 1,
+      'timeout' => 5
+  ]
 ];
-
 $context = stream_context_create($mpdheads);
 
-// Fetch and output the content
+// Fetch and output
 $res = @file_get_contents($mpdUrl, false, $context);
 
 if ($res === false) {
