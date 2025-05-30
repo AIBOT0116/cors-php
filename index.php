@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 $get = $_GET['get'];
-$mpdUrl = 'https://linearjitp-playback.astro.com.my/dash-wv/linear/' . $get;
+$mpdUrl = 'https://linearjitp02-playback.astro.com.my/dash-wv/linear/' . $get;
 
 // Set headers for fetching remote
 $mpdheads = [
