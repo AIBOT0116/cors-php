@@ -10,13 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 $get = $_GET['get'];
-$mpdUrl = 'https://linearjitp02-playback.astro.com.my/dash-wv/linear/' . $get;
+$mpdUrl = 'https://linearjitp-playback.astro.com.my/dash-wv/linear/' . $get;
 
 // Set headers for fetching remote
 $mpdheads = [
   'http' => [
-      'header' => "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36\r\n" .
-                 "Referer: https://astrogo.astro.com.my\r\n",  // Added Referer header
+      'header' => "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36\r\n",
       'follow_location' => 1,
       'timeout' => 5
   ]
